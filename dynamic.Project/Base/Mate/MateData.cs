@@ -23,9 +23,13 @@ namespace dynamic.Project.Base.Mate
         {
             get
             {
-                if(_entityDir == default(string))
+                if(string.IsNullOrWhiteSpace(_entityDir))
                 {
                     _entityDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "entity");
+                    if(!Directory.Exists(_entityDir))
+                    {
+                        Directory.CreateDirectory(_entityDir);
+                    }
                 }
                 return _entityDir;
             }
@@ -54,8 +58,10 @@ namespace dynamic.Project.Base.Mate
         public static void StartWatchEntity()
         {
             var watcher = new FileSystemWatcher(EntityDir);
+            Console.WriteLine("实体监控启动");
+            Console.WriteLine("实体监控目录：" + EntityDir);
             watcher.Filter = "*.dll";
-            watcher.IncludeSubdirectories = true;
+            watcher.IncludeSubdirectories = false;
             watcher.Changed += OnBinChange;
             watcher.Created += OnBinChange;
             watcher.Deleted += OnBinChange;

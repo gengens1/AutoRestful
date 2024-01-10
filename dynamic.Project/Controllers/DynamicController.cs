@@ -59,9 +59,13 @@ namespace dynamic.Project.Controllers
             Dictionary<string, string>? execParams,
             [CallerMemberName]string methodName = "")
         {
-            if(string.IsNullOrEmpty(methodName)) throw new Exception("调用方法名为空，请检查");
+            if(string.IsNullOrEmpty(methodName)) 
+                throw new Exception("调用方法名为空，请检查");
+
+            //获取实体类型
             Type type = FindEntity(entity);
             if (type == null) throw new Exception($"未找到实体<{entity}>");
+
             //获取数据访问器
             var accType = accessType.MakeGenericType(type);
             var acc = GetAccess(accType);
@@ -91,28 +95,25 @@ namespace dynamic.Project.Controllers
         [HttpGet]
         public ActionResult<ApiResult> Sel(
             [FromRoute] string entity
-            ,[FromQuery] Dictionary<string, string>? queryParams = default(Dictionary<string, string>)
+            ,[FromQuery] Dictionary<string, string>? queryParams
             ) => Handle(DbAccessType, entity,queryParams);
             
-        
-
         [HttpPost]
         public ActionResult<ApiResult> Add(
             [FromRoute] string entity
-            , [FromBody] Dictionary<string, string>? queryParams = default(Dictionary<string, string>)
+            , [FromBody] Dictionary<string, string>? queryParams
             ) => Handle(DbAccessType, entity, queryParams);
 
         [HttpPut]
         public ActionResult<ApiResult> Update(
             [FromRoute] string entity
-            , [FromBody] Dictionary<string, string>? queryParams = default(Dictionary<string, string>)
+            , [FromBody] Dictionary<string, string>? queryParams
             ) => Handle(DbAccessType, entity, queryParams);
-
 
         [HttpDelete]
         public ActionResult<ApiResult> Delete(
             [FromRoute] string entity
-            , [FromQuery] Dictionary<string, string>? queryParams = default(Dictionary<string, string>)
+            , [FromQuery] Dictionary<string, string>? queryParams
             ) => Handle(DbAccessType, entity, queryParams);
     }
 }

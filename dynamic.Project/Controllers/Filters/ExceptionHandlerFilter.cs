@@ -8,7 +8,7 @@ namespace dynamic.Project.Controllers.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            context.Result =  new BadRequestObjectResult(ApiResult.Fail(context.Exception.Message));
+            context.Result =  new BadRequestObjectResult(ApiResult.Fail(context.Exception.Message,context.Exception));
         }
     }
 }

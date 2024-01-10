@@ -11,18 +11,18 @@
         {
             return new ApiResult
             {
-                Code = 200,
+                Code = code,
                 Message = message,
                 Data = data,
                 Result = true
             };
         }
 
-        public static ApiResult Fail(string message = "Fail", object data = null, int code = 200)
+        public static ApiResult Fail(string message = "Fail", object data = null, int code = 400)
         {
             return new ApiResult
             {
-                Code = 400,
+                Code = code,
                 Message = message,
                 Data = data,
                 Result = false
