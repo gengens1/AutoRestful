@@ -38,9 +38,11 @@ namespace dynamic.Project.Db
                 {
                     Console.WriteLine("加载实体"+ m.FullName);
                     modelBuilder.Entity(m).HasKey("Id");
+                    if (!MateData.RegistedEntityModels.Contains(m)) 
+                        MateData.RegistedEntityModels.Add(m);
+                    ((EntityBase)Activator.CreateInstance(m)).OnModelCreating(modelBuilder);
                 });
             }
-
             base.OnModelCreating(modelBuilder);
         }
     }

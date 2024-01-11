@@ -1,12 +1,15 @@
 using dynamic.Project.Base;
 using dynamic.Project.Base.Mate;
 using dynamic.Project.Db;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -55,4 +58,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+MateData.OnInited(app);
 app.Run();
+
+
+

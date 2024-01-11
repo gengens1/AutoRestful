@@ -1,26 +1,36 @@
-﻿namespace dynamic.Project.Entity
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace dynamic.Project.Entity
 {
     public class EntityBase : IEntityBase
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public DateTime CreateAt { get; set; } = DateTime.Now;
         public DateTime UpdateAt { get; set; } = DateTime.Now;
-
-        public void OnDelete()
+        public EntityBase()
+        {
+            
+        }
+        public virtual void OnDelete()
         {
         }
 
-        public void OnFind()
+        public virtual void OnFind()
         {
         }
 
-        public void OnInsert()
+        public virtual void OnInsert()
         {
         }
 
-        public void OnUpdate()
+        public virtual void OnUpdate()
         {
             UpdateAt = DateTime.Now;
         }
+
+        public virtual void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
+
     }
 }
