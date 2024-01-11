@@ -21,21 +21,26 @@
 ## 使用说明 - 可在命令行工具中查询
 
 1. 基本使用
-新建一个类库项目，使用.net 6.0
-引用本程序的dynamic.Project.Entity类库
-编写你需要的实体，
-实体必须继承EntityBase类
-EntityBase类中包含Id,CreateAt,UpdateAt三个字段 其中Id为Key，皆自动维护
-EntityBase类中包含5个生命周期方法，分别为
-OnModelCreating,
-OnInsert,OnUpdate,OnDelete,OnFind
-可选择性重写这些方法，这些方法会在对应的操作时自动调用
-编写完实体后，编译项目，将编译后的dll放入本程序的entity目录下
-本程序将自动重启，并加载新的实体，同步至数据库，实现其Restful接口
+  新建一个类库项目，使用.net 6.0  
+  引用本程序的dynamic.Project.Entity类库  
+  编写你需要的实体，  
+  实体必须继承EntityBase类  
+  EntityBase类中包含Id,CreateAt,UpdateAt三个字段 其中Id为Key，皆自动维护  
+  EntityBase类中包含5个生命周期方法，分别为  
+
+  - `OnModelCreating(ModelBuilder modelbuilder)`
+  - `OnInsert`
+  - `OnUpdate`
+  - `OnDelete`
+  - `OnFind`
+
+  可选择性重写这些方法，这些方法会在对应的操作时自动调用  
+  编写完实体后，编译项目，将编译后的dll放入本程序的entity目录下  
+  本程序将自动重启，并加载新的实体，同步至数据库，实现其Restful接口  
 
 2. 注意
-本程序暂不支持实体的修改，如需修改实体，请删除实体，重新创建
-注意保存表中的数据，以免丢失
+  本程序暂不支持实体的修改，如需修改实体，请删除实体，重新创建  
+  注意保存表中的数据，以免丢失
 
 ## Api说明
 
