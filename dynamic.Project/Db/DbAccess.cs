@@ -113,11 +113,11 @@ namespace dynamic.Project.Db
             var sql = $"select * from {type.Name} where 1 = 1";
             var props = type.GetProperties();
             var sProps = seaObj.Properties();
-            //筛选出该模型中含有的属性
-            var seaProps = sProps.Where(
-                p => props.Any(pp => pp.Name == p.Name) 
-            );
 
+            //精准查询
+            var seaProps = sProps.Where(
+                p => props.Any(pp => pp.Name.ToLower() == p.Name.ToLower()) 
+            );
             foreach(var prop in seaProps) {
                 var val = prop.Value;
                 if(val != null)
@@ -132,17 +132,26 @@ namespace dynamic.Project.Db
                 }
             }
 
+            //模糊查询
+            var likeProps = sProps.Where(
+                p => props.Any(pp => "L_"+pp.Name.ToUpper() == p.Name.ToUpper())
+            );
 
+            foreach (var prop in likeProps)
+            {
+                var val = prop.Value;
+                if (val != null) sql += $"and {prop.Name} like '%{val}%'";
+            }
 
-            //时间区间筛选
+            //时间区间查询
             //筛选规则，检查到属性类型为时间则传入 B_属性名 表示限制其最早时间 E_属性名为最晚时间
             var timeProps = props.Where(p => p.PropertyType == typeof(DateTime));
             foreach(var tp in timeProps)
             {
-                var bt = sProps.FirstOrDefault(p => p.Name == "B_" + tp.Name);
+                var bt = sProps.FirstOrDefault(p => p.Name.ToUpper() == ("B_" + tp.Name).ToUpper());
                 if (bt != null) sql += $"and {tp.Name} > '{bt.Value}'";
 
-                var et = sProps.FirstOrDefault(p => p.Name == "E_" + tp.Name);
+                var et = sProps.FirstOrDefault(p => p.Name.ToUpper() == ("E_" + tp.Name).ToUpper());
                 if (et != null) sql += $"and {tp.Name} > '{et.Value}'";
             }
 

@@ -28,8 +28,13 @@ namespace dynamic.Project.Entity
             UpdateAt = DateTime.Now;
         }
 
+        /// <summary>
+        /// 基类方法会进行注册实体操作，请在重写后调用base.OnModelCreating(modelBuilder)
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         public virtual void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity(this.GetType()).HasKey(nameof(Id));
         }
 
     }

@@ -37,7 +37,6 @@ namespace dynamic.Project.Db
                 models.ForEach(m =>
                 {
                     Console.WriteLine("加载实体"+ m.FullName);
-                    modelBuilder.Entity(m).HasKey("Id");
                     if (!MateData.RegistedEntityModels.Contains(m)) 
                         MateData.RegistedEntityModels.Add(m);
                     ((EntityBase)Activator.CreateInstance(m)).OnModelCreating(modelBuilder);
