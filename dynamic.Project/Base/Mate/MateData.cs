@@ -201,7 +201,7 @@ namespace dynamic.Project.Base.Mate
 |____| |____|`.__.'      |_____|   `.___.'  |____| |___||________| \______.'  |_____|   
 {DateTime.Now.ToLongTimeString()}
 本程序现共注册： {RegistedEntityModels.Count}个实体模型
-项目地址：{ApiAddress + "/api"}
+项目地址：https://gitee.com/gengens/auto-rest-ful.git
 输入help获取帮助信息
 ";
             }
@@ -213,12 +213,12 @@ namespace dynamic.Project.Base.Mate
             get
             {
                 return $@"
-1. help 显示本帮助文档
-2. spe 显示使用说明
-3. apispe 显示api使用说明
-4. api 显示所有实体接口及接口信息
-5. api <entityName> 根据实体名称模糊查找某个实体的接口信息
-6. quit/exit 退出本程序";
+1. help              显示本帮助文档
+2. spe               显示使用说明
+3. apispe            显示api使用说明
+4. api               显示所有实体接口及接口信息
+5. api <entityName>  根据实体名称模糊查找某个实体的接口信息
+6. quit/exit         退出本程序";
             }
         }
 
