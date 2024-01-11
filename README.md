@@ -13,7 +13,7 @@
 - 查询现存接口
 - ETC
 
-# 注意事项
+## 注意事项
 
 - 请在appsettings.json中配置数据库连接字符串
 - 暂不支持实体修改，如需修改请删除数据表，重新生成，**注意备份表中的数据集**
@@ -39,41 +39,52 @@ OnInsert,OnUpdate,OnDelete,OnFind
 
 ## Api说明
 
-1. Get请求 - 查询
-（1） **基础查询**
-Get请求采取的是Url键值对的形式，例如：{ApiAddress}/api/userinfo?id=1  
+### Get请求 - 查询
+
+##### **基础查询**
+
+Get请求采取的是Url键值对的形式，例如：```{ApiAddress}/api/userinfo?id=1```  
 表示查出所有id为1的userinfo实体列表，  
 不过，实际EntityBase中的Id是Guid，这里只是举个例子  
 如果不传id参数，则表示查询所有userinfo实体列表，使用&可附加多个条件，  
 
-（2）**时间区间查询**  
-除了精准查询以为，也支持时间区间查询，例如：{ApiAddress}/api/userinfo?B_CreateAt=2022-01-01&L_CreateAt=2022-01-02  
+##### 时间区间查询  
+
+除了精准查询以为，也支持时间区间查询，例如：
+```{Address}/api/userinfo?B_CreateAt=2022-01-01&L_CreateAt=2022-01-02 ```  
 表示查询出所有创建时间在2022-01-01到2022-01-02之间的userinfo实体列表  
-当然也可以只传一个参数，例如：{ApiAddress}/api/userinfo?B_CreateAt=2022-01-01  
+当然也可以只传一个参数，
+
+例如：```{Address}/api/userinfo?B_CreateAt=2022-01-01```
 表示查询出所有创建时间大于2022-01-01的userinfo实体列表  
-B_<属性名> 表示大于,E_<属性名>表示小于  
+**B\_<属性名> 表示大于,E\_<属性名>表示小于**  
 
-（3）**分页查询**  
-分页查询需要三个参数，分别为排序字段（OrderBy），页面大小(PageSize)以及页面索引(PageIndex)，  
-例如：{ApiAddress}/api/userinfo?PageSize=10&PageIndex=2&OrderBy=Id  
-这三个字段为关键字，在编写模型时请勿使用占用  
-排序字段（OrderBy）可选，默认为Id  
-页面索引 (PageIndex)可选，默认为1  
-页面大小 (PageSize)必选，否则不分页  
+##### 分页查询  
 
-（4）**模糊查询**  
-模糊查询需要在属性名前加L_，例如：{ApiAddress}/api/userinfo?L_Name=张三  
+分页查询需要三个参数，分别为排序字段`（OrderBy）`，页面大小`（PageSize）`以及页面索引`（PageIndex）`，  
+例如：
+
+```{Address}/api/userinfo?PageSize=10&PageIndex=2&OrderBy=Id```
+    这三个字段为关键字，在编写模型时请勿使用占用  
+    排序字段（OrderBy）可选，默认为Id  
+    页面索引 (PageIndex)可选，默认为1  
+    页面大小 (PageSize)必选，否则不分页  
+
+##### 模糊查询  
+模糊查询需要在属性名前加L_，
+例如：```{Address}/api/userinfo?L_Name=张三 ```
 表示查询出所有Name中包含张三的userinfo实体列表  
 
+### Post请求 - 新增  
 
-2. **Post请求 - 新增**
-Post请求采取的是Json格式的数据，
-Guid会自动生成，CreateAt和UpdateAt会自动赋值
-这三个字段由程序自动维护
+Post请求采取的是Json格式的数据
+`Id`，`CreateAt`,`UpdateAt`
+这三个字段由程序自动维护，无需传值
 
-3. **Put请求 - 修改**
+### Put请求 - 修改  
 Put请求采取的是Json格式的数据，但必须包含Id字段
 
-4. Delete请求 - 删除
-Delete请求采取的键值对格式的数据，参数放在Url中，例如：{ApiAddress}/api/userinfo?id=1
+### Delete请求 - 删除  
+Delete请求采取的键值对格式的数据，参数放在Url中，
+例如：```{Address}/api/userinfo?id=1```
 表示删除Id为1的userinfo实体

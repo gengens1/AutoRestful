@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dynamic.Project", "dynamic.Project\dynamic.Project.csproj", "{A59C8C56-D293-4BE1-81B1-E410C5422E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dynamic.Project.Entity", "dynamic.Project.Entity\dynamic.Project.Entity.csproj", "{1C3A45FC-A653-4CB1-859C-D7760E0401D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dynamic.Project.Entity", "dynamic.Project.Entity\dynamic.Project.Entity.csproj", "{1C3A45FC-A653-4CB1-859C-D7760E0401D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
